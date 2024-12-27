@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Auto-Sliding Carousel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="h-screen overflow-hidden flex items-center justify-center bg-gray-100">
+    <div class="max-w-2xl max-h-60  mx-auto relative ">
+        <!-- Carousel Wrapper -->
+        <div class="overflow-hidden relative w-full h-[220px]  ">
+            <div id="carousel-items" class="flex transition-transform duration-700 ">
+                <!-- Slide 1 -->
+                <div class="min-w-full h-full">
+                    <img src="https://flowbite.com/docs/images/carousel/carousel-1.svg" class="w-full h-full " alt="Slide 1
+                    class='object-cover'
+                    ">
+                </div>
+                <!-- Slide 2 -->
+                <div class="min-w-full h-full">
+                    <img src="https://flowbite.com/docs/images/carousel/carousel-2.svg" class="w-full h-full " alt="Slide 2">
+                </div>
+                <!-- Slide 3 -->
+                <div class="min-w-full h-full">
+                    <img src="https://flowbite.com/docs/images/carousel/carousel-3.svg" class="w-full h-full" alt="Slide 3">
+                </div>
+            </div>
+        </div>
+        <!-- Controls -->
+        <button id="prev" class="absolute top-1/2 left-2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full">
+            Prev
+        </button>
+        <button id="next" class="absolute top-1/2 right-2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full">
+            Next
+        </button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const carouselItems = document.getElementById('carousel-items');
+            const prevButton = document.getElementById('prev');
+            const nextButton = document.getElementById('next');
+            const totalSlides = carouselItems.children.length;
+            let currentIndex = 0;
+
+            // Update carousel transform
+            function updateCarousel() {
+                carouselItems.style.transform = `translateX(-${currentIndex * 100}%)`;
+            }
+
+            // Next button click
+            nextButton.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % totalSlides;
+                updateCarousel();
+            });
+
+            // Prev button click
+            prevButton.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+                updateCarousel();
+            });
+
+            // Auto-transition every 5 seconds
+            setInterval(() => {
+                currentIndex = (currentIndex + 1) % totalSlides;
+                updateCarousel();
+            }, 5000);
+
+            // Initialize carousel
+            updateCarousel();
+        });
+    </script>
+</body>
+</html>
