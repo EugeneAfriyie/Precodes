@@ -44,18 +44,18 @@
             const totalSlides = carouselItems.children.length;
             let currentIndex = 0;
 
-            // Update carousel transform
+       
             function updateCarousel() {
                 carouselItems.style.transform = `translateX(-${currentIndex * 100}%)`;
             }
 
-            // Next button click
+            
             nextButton.addEventListener('click', () => {
                 currentIndex = (currentIndex + 1) % totalSlides;
                 updateCarousel();
             });
 
-            // Prev button click
+
             prevButton.addEventListener('click', () => {
                 currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
                 updateCarousel();
